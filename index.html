@@ -480,11 +480,11 @@ h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.02
             <div class="embed-modal-inner">
               <p class="tag tag--scald">Ready when you are</p>
               <h3>Take your seat.</h3>
-              <p>Choose the 6:30pm or 7:30pm sitting and complete your booking without leaving Dishpigs.</p>
+              <p>Choose the 6:30pm or 7:30pm sitting and secure your seat through Eventbrite.</p>
 
-              <button class="btn" id="eventbrite-modal-trigger" type="button">
+              <a class="btn" href="https://www.eventbrite.com.au/e/1997564964582" target="_blank" rel="noopener">
                 Buy tickets <span aria-hidden="true">↗</span>
-              </button>
+              </a>
 
               <noscript>
                 <div class="embed-fallback">
@@ -497,10 +497,7 @@ h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.02
             </div>
           </div>
 
-          <p class="tix-note" style="text-align:center">
-            Checkout not opening?
-            <a href="https://www.eventbrite.com.au/e/1997564964582" target="_blank" rel="noopener" style="color:var(--scald)">Book on Eventbrite</a>
-          </p>
+          
         </div>
       </div>
 
@@ -546,25 +543,6 @@ h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.02
     </div>
   </div>
 </footer>
-
-<script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
-<script>
-  window.addEventListener('load', function(){
-    if(window.EBWidgets){
-      window.EBWidgets.createWidget({
-        widgetType:'checkout',
-        eventId:'1997564964582',
-        modal:true,
-        modalTriggerElementId:'eventbrite-modal-trigger',
-        themeSettings:{
-          brandColor:'#D2553A',
-          fontColor:'#0C1E15',
-          background:'#EDE6D6'
-        }
-      });
-    }
-  });
-</script>
 
 <script>
 (function(){
