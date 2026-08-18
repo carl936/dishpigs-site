@@ -201,11 +201,31 @@ h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.02
 .incl li{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--steel);font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--bone-dim)}
 .incl li b{color:var(--scald);font-weight:400}
 
-.embed-shell{border:1px solid var(--steel);background:var(--bone);padding:1rem;color:var(--pit)}
-#eventbrite-widget{min-height:26rem;display:block}
-.embed-fallback{display:grid;place-items:center;text-align:center;min-height:24rem;padding:2rem 1.2rem}
-.embed-fallback strong{font-family:var(--display);font-size:1.7rem;font-weight:300;display:block;margin-bottom:.6rem}
-.embed-fallback p{color:var(--bone-dim);max-width:32ch;margin:0 auto 1.6rem;font-size:.95rem}
+.embed-shell{
+  border:1px solid var(--steel);
+  background:var(--pit);
+  padding:clamp(2.5rem,7vw,5rem) clamp(1.4rem,5vw,3rem);
+  display:grid;
+  place-items:center;
+  text-align:center;
+  color:var(--bone);
+}
+.embed-modal-inner{max-width:34rem}
+.embed-modal-inner h3{
+  font-family:var(--display);
+  font-size:clamp(2.2rem,6vw,4rem);
+  font-weight:300;
+  line-height:1;
+  margin:.8rem 0 1rem;
+}
+.embed-modal-inner p{
+  color:var(--bone-dim);
+  max-width:38ch;
+  margin:0 auto 2rem;
+}
+#eventbrite-modal-trigger{cursor:pointer}
+.embed-fallback{margin-top:1rem}
+.embed-fallback p{color:var(--bone-dim);font-size:.8rem}
 .tix-note{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;line-height:1.9;color:var(--bone-dim);margin-top:1.2rem}
 
 /* --- know before ------------------------------------------------- */
@@ -457,24 +477,30 @@ h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.02
 
         <div class="rv">
           <div class="embed-shell">
-            <!-- ================= EVENTBRITE =================
-                 Live embed for event 1997564964582.
-                 If Jules ever runs a second night, change the eventId
-                 below and the "Book on Eventbrite" link underneath.
-                 ============================================== -->
-            <div id="eventbrite-widget"></div>
+            <div class="embed-modal-inner">
+              <p class="tag tag--scald">Ready when you are</p>
+              <h3>Take your seat.</h3>
+              <p>Choose the 6:30pm or 7:30pm sitting and complete your booking without leaving Dishpigs.</p>
 
-            <noscript>
-              <div class="embed-fallback">
-                <div>
-                  <strong>Tickets are on Eventbrite.</strong>
-                  <p>Turn on JavaScript to book here, or head straight to the event page.</p>
-                  <a class="btn" href="https://www.eventbrite.com.au/e/1997564964582" target="_blank" rel="noopener">Book on Eventbrite <span aria-hidden="true">↗</span></a>
+              <button class="btn" id="eventbrite-modal-trigger" type="button">
+                Buy tickets <span aria-hidden="true">↗</span>
+              </button>
+
+              <noscript>
+                <div class="embed-fallback">
+                  <p>JavaScript is required for checkout.</p>
+                  <a class="btn" href="https://www.eventbrite.com.au/e/1997564964582" target="_blank" rel="noopener">
+                    Book on Eventbrite <span aria-hidden="true">↗</span>
+                  </a>
                 </div>
-              </div>
-            </noscript>
+              </noscript>
+            </div>
           </div>
-          <p class="tix-note" style="text-align:center">Checkout not loading? <a href="https://www.eventbrite.com.au/e/1997564964582" target="_blank" rel="noopener" style="color:var(--scald)">Book on Eventbrite</a></p>
+
+          <p class="tix-note" style="text-align:center">
+            Checkout not opening?
+            <a href="https://www.eventbrite.com.au/e/1997564964582" target="_blank" rel="noopener" style="color:var(--scald)">Book on Eventbrite</a>
+          </p>
         </div>
       </div>
 
@@ -528,8 +554,13 @@ h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.02
       window.EBWidgets.createWidget({
         widgetType:'checkout',
         eventId:'1997564964582',
-        iframeContainerId:'eventbrite-widget',
-        iframeContainerHeight:680
+        modal:true,
+        modalTriggerElementId:'eventbrite-modal-trigger',
+        themeSettings:{
+          brandColor:'#D2553A',
+          fontColor:'#0C1E15',
+          background:'#EDE6D6'
+        }
       });
     }
   });
