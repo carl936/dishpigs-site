@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0C1E15">
+<title>Dishpigs — Monday 28 September at Albert's</title>
+<meta name="description" content="Dishpigs' night at Albert's. Monday 28 September, Albert's Wine Bar, Armadale. A five-course elevated Vietnamese dinner with drinks poured to every course. $150.">
+
+<!-- Social preview -->
+<meta property="og:title" content="Dishpigs — One night at Albert's">
+<meta property="og:description" content="Monday 28 September, Albert's Wine Bar, Armadale. Five courses, a drink with every one. $150.">
+<meta property="og:image" content="landscape1.png">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=IBM+Plex+Mono:wght@400;500&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   Dishpigs
+   Everything you need to edit is marked with  <<EDIT>>
+   Images live in the same folder:
+   landscape1.png  landscape2.png  portrait1.png  portrait2.png  portrait3.png
+   ============================================================ */
+
+:root{
+  --pit:#0C1E15;         /* deepest green, page base */
+  --green:#12331F;       /* panel green */
+  --green-soft:#1B4229;  /* hover / borders */
+  --bone:#EDE6D6;        /* type on dark */
+  --bone-dim:#A9B3A4;    /* secondary type */
+  --scald:#D2553A;       /* burnt chilli — used sparingly */
+  --steel:#3E4E44;       /* hairlines */
+
+  --display:"Fraunces",Georgia,serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --body:"Archivo",Helvetica,Arial,sans-serif;
+
+  --max:1360px;
+  --gut:clamp(1.1rem,4vw,3rem);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--pit)}
+body{
+  margin:0;background:var(--pit);color:var(--bone);
+  font-family:var(--body);font-size:clamp(1rem,.96rem + .2vw,1.08rem);line-height:1.62;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body.nav-open{overflow:hidden}
+img{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--scald);color:var(--bone)}
+
+.wrap{width:min(100% - (var(--gut)*2),var(--max));margin-inline:auto}
+
+/* --- utility type ------------------------------------------------ */
+.tag{
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--bone-dim);margin:0;
+}
+.tag--scald{color:var(--scald)}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;letter-spacing:-.02em}
+.serif-i{font-style:italic}
+
+/* --- focus / skip ------------------------------------------------ */
+:focus-visible{outline:2px solid var(--scald);outline-offset:3px}
+.skip{position:fixed;top:-6rem;left:1rem;z-index:999;background:var(--scald);color:#fff;padding:.7rem 1rem;font-family:var(--mono);font-size:.75rem}
+.skip:focus{top:1rem}
+
+/* --- header ------------------------------------------------------ */
+.hdr{position:fixed;inset:0 0 auto;z-index:80;transition:background .25s,border-color .25s;border-bottom:1px solid transparent}
+.hdr.stuck{background:rgba(12,30,21,.92);backdrop-filter:blur(10px);border-color:var(--steel)}
+.hdr-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:70px}
+.mark{font-family:var(--display);font-size:1.25rem;letter-spacing:-.02em;text-decoration:none;white-space:nowrap}
+.mark b{font-weight:600}
+.hdr-nav{display:none;gap:2rem;align-items:center}
+.hdr-nav a{font-family:var(--mono);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:var(--bone-dim)}
+.hdr-nav a:hover{color:var(--bone)}
+.burger{width:44px;height:44px;display:grid;place-content:center;gap:6px;background:none;border:1px solid var(--steel);border-radius:0;cursor:pointer;padding:0}
+.burger span{display:block;width:18px;height:1px;background:var(--bone);transition:transform .2s}
+.burger[aria-expanded="true"] span:first-child{transform:translateY(3.5px) rotate(45deg)}
+.burger[aria-expanded="true"] span:last-child{transform:translateY(-3.5px) rotate(-45deg)}
+
+.sheet{position:fixed;inset:0;z-index:70;background:var(--pit);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity .25s}
+.sheet.open{opacity:1;pointer-events:auto}
+.sheet nav{display:grid;gap:.4rem;text-align:center}
+.sheet a{font-family:var(--display);font-size:clamp(2.8rem,15vw,4.5rem);line-height:1.05;text-decoration:none}
+.sheet a:nth-child(even){font-style:italic;color:var(--bone-dim)}
+
+/* --- hero -------------------------------------------------------- */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding:6rem 0 0;isolation:isolate}
+.hero-bg{
+  position:absolute;inset:0;z-index:-2;
+  background:var(--green) url('landscape1.png') center/cover no-repeat;
+}
+.hero-veil{
+  position:absolute;inset:0;z-index:-1;
+  background:
+    linear-gradient(180deg,rgba(12,30,21,.82) 0%,rgba(12,30,21,.5) 38%,rgba(12,30,21,.94) 88%),
+    linear-gradient(90deg,rgba(18,51,31,.55),rgba(12,30,21,.2));
+}
+.hero-top{display:flex;justify-content:space-between;gap:1rem;padding-bottom:2rem}
+.hero-top p{max-width:19ch}
+.hero-title{
+  font-size:clamp(4.4rem,23vw,17rem);line-height:.78;letter-spacing:-.045em;font-weight:300;
+  margin:0 0 .1em;
+}
+.hero-title span{display:block}
+.hero-title .b{font-style:italic;font-weight:400;margin-left:.06em}
+.hero-hook{
+  font-family:var(--display);font-size:clamp(1.35rem,4.2vw,2.4rem);line-height:1.15;
+  max-width:22ch;margin:0;font-weight:300;
+}
+.hero-foot{display:grid;gap:1.6rem;padding:1.6rem 0 2.2rem;border-top:1px solid var(--steel)}
+.scroll-cue{font-family:var(--mono);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--bone-dim);display:flex;align-items:center;gap:.6rem}
+.scroll-cue i{display:block;width:34px;height:1px;background:var(--steel);position:relative;overflow:hidden}
+.scroll-cue i::after{content:"";position:absolute;inset:0;background:var(--scald);transform:translateX(-100%);animation:slide 2.6s infinite}
+@keyframes slide{0%{transform:translateX(-100%)}60%{transform:translateX(100%)}100%{transform:translateX(100%)}}
+
+/* --- button ------------------------------------------------------ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:space-between;gap:2.5rem;
+  min-height:54px;padding:.9rem 1.1rem;width:fit-content;
+  background:var(--scald);color:#fff;text-decoration:none;border:1px solid var(--scald);
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;
+  transition:background .2s,color .2s,transform .2s;
+}
+.btn:hover{background:transparent;color:var(--scald);transform:translateY(-2px)}
+.btn--ghost{background:transparent;color:var(--bone);border-color:var(--steel)}
+.btn--ghost:hover{background:var(--bone);color:var(--pit);border-color:var(--bone)}
+
+/* --- ticker (signature: the docket rail) ------------------------- */
+.rail{border-block:1px solid var(--steel);background:var(--green);overflow:hidden;padding:.85rem 0}
+.rail-track{display:flex;width:max-content;animation:roll 38s linear infinite}
+.rail:hover .rail-track{animation-play-state:paused}
+.rail-track span{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+  padding-inline:1.4rem;white-space:nowrap;color:var(--bone-dim);
+}
+.rail-track span em{color:var(--scald);font-style:normal}
+@keyframes roll{to{transform:translateX(-50%)}}
+
+/* --- generic section --------------------------------------------- */
+.sec{padding:clamp(4.5rem,11vw,9rem) 0;scroll-margin-top:70px}
+.sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;padding-bottom:2.6rem;border-bottom:1px solid var(--steel);margin-bottom:3rem}
+
+/* --- the pit (statement) ----------------------------------------- */
+.pit-grid{display:grid;gap:3rem}
+.pit-copy p{font-family:var(--display);font-weight:300;font-size:clamp(1.6rem,5.2vw,3rem);line-height:1.1;margin:0 0 .55em;letter-spacing:-.025em}
+.pit-copy p.small{font-family:var(--body);font-size:1.02rem;line-height:1.66;color:var(--bone-dim);max-width:44ch;letter-spacing:0;margin-top:2rem}
+.pit-copy .hit{color:var(--scald);font-style:italic}
+.pit-fig{position:relative}
+.pit-img{aspect-ratio:3/4;background:var(--green) url('portrait1.png') center/cover no-repeat}
+.cap{font-family:var(--mono);font-size:.63rem;letter-spacing:.16em;text-transform:uppercase;color:var(--bone-dim);margin:.7rem 0 0}
+
+/* --- band -------------------------------------------------------- */
+.band{position:relative;min-height:70svh;display:grid;place-items:center;text-align:center;padding:5rem var(--gut);isolation:isolate}
+.band-bg{position:absolute;inset:0;z-index:-2;background:var(--green) url('0b2584a0-aeb3-4f7d-a5fd-3e9ea94d0e9e.JPG') center/cover no-repeat}
+.band-veil{position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(12,30,21,.72),rgba(12,30,21,.86))}
+.band q{font-family:var(--display);font-style:italic;font-weight:300;font-size:clamp(1.9rem,6.5vw,4.2rem);line-height:1.08;max-width:18ch;display:block;quotes:none}
+
+/* --- the night (docket) ------------------------------------------ */
+.night{background:var(--green)}
+.night-grid{display:grid;gap:3.5rem;align-items:start}
+.docket{background:var(--bone);color:var(--pit);padding:1.6rem 1.4rem 1.8rem;font-family:var(--mono);position:relative}
+.docket::after{
+  content:"";position:absolute;left:0;right:0;bottom:-9px;height:10px;
+  background:repeating-linear-gradient(90deg,var(--bone) 0 9px,transparent 9px 18px);
+  -webkit-mask:radial-gradient(circle at 9px 0,transparent 0 8px,#000 8px) repeat-x 0 0/18px 10px;
+  mask:radial-gradient(circle at 9px 0,transparent 0 8px,#000 8px) repeat-x 0 0/18px 10px;
+}
+.docket-hd{display:flex;justify-content:space-between;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;padding-bottom:.9rem;border-bottom:1px dashed rgba(12,30,21,.4)}
+.docket dl{margin:0}
+.docket .row{display:grid;grid-template-columns:5.6rem 1fr;gap:1rem;padding:.85rem 0;border-bottom:1px dashed rgba(12,30,21,.28)}
+.docket dt{font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:#4A5A4E;padding-top:.2rem}
+.docket dd{margin:0;font-family:var(--display);font-size:1.2rem;line-height:1.3}
+.docket dd small{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:#4A5A4E;margin-top:.25rem}
+.docket-ft{font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:#4A5A4E;padding-top:1rem}
+
+.surprise{border:1px solid var(--steel);padding:2rem 1.6rem}
+.surprise h3{font-size:clamp(1.8rem,5.5vw,2.6rem);line-height:1.05;margin:.8rem 0 1rem;font-weight:300}
+.surprise h3 em{color:var(--scald)}
+.surprise p{margin:0;color:var(--bone-dim);max-width:40ch}
+.night-img{aspect-ratio:3/4;background:var(--green-soft) url('portrait2.png') center/cover no-repeat;margin-top:3rem}
+
+/* --- about ------------------------------------------------------- */
+.about-grid{display:grid;gap:3rem;align-items:center}
+.about-copy p{font-family:var(--display);font-weight:300;font-size:clamp(1.35rem,3.8vw,2.05rem);line-height:1.22;margin:0 0 1rem;letter-spacing:-.02em}
+.about-copy .sign{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--scald);margin-top:2rem}
+.about-img{aspect-ratio:4/5;background:var(--green) url('ebf8a567-fe1c-4bc2-952a-5e92f2c5fa03.JPG') 82% center/cover no-repeat}
+
+/* --- tickets ----------------------------------------------------- */
+.tix{background:var(--green);border-top:1px solid var(--steel)}
+.tix-grid{display:grid;gap:3.5rem;align-items:start}
+.price{font-family:var(--display);font-size:clamp(4.5rem,17vw,9rem);line-height:.85;font-weight:300;margin:1.5rem 0 .4rem;letter-spacing:-.05em}
+.price sup{font-size:.32em;vertical-align:super;top:-.2em}
+.incl{list-style:none;margin:2rem 0 0;padding:0;border-top:1px solid var(--steel)}
+.incl li{display:flex;gap:1rem;padding:.85rem 0;border-bottom:1px solid var(--steel);font-family:var(--mono);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--bone-dim)}
+.incl li b{color:var(--scald);font-weight:400}
+
+.embed-shell{border:1px solid var(--steel);background:var(--pit);padding:1rem}
+#eventbrite-widget{min-height:26rem;display:block}
+.embed-fallback{display:grid;place-items:center;text-align:center;min-height:24rem;padding:2rem 1.2rem}
+.embed-fallback strong{font-family:var(--display);font-size:1.7rem;font-weight:300;display:block;margin-bottom:.6rem}
+.embed-fallback p{color:var(--bone-dim);max-width:32ch;margin:0 auto 1.6rem;font-size:.95rem}
+.tix-note{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;line-height:1.9;color:var(--bone-dim);margin-top:1.2rem}
+
+/* --- know before ------------------------------------------------- */
+.know-grid{display:grid;gap:2.5rem}
+.know h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--scald);margin:0 0 .8rem;padding-top:1rem;border-top:1px solid var(--steel)}
+.know p{margin:0;color:var(--bone-dim);font-size:.98rem}
+
+/* --- footer ------------------------------------------------------ */
+.ftr{border-top:1px solid var(--steel);padding:3rem 0 2.2rem}
+.ftr-grid{display:grid;gap:2rem}
+.ftr-mark{font-family:var(--display);font-size:clamp(3rem,14vw,7rem);line-height:.85;font-weight:300;letter-spacing:-.04em;margin:0 0 1.5rem}
+.ftr-links{display:flex;flex-wrap:wrap;gap:.6rem 1.5rem}
+.ftr-links a{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);text-decoration:none;border-bottom:1px solid var(--steel);padding-bottom:.2rem}
+.ftr-links a:hover{color:var(--scald);border-color:var(--scald)}
+.ftr-meta{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;line-height:2;color:var(--bone-dim)}
+
+/* --- reveal ------------------------------------------------------ */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+
+/* --- breakpoints -------------------------------------------------- */
+@media(min-width:700px){
+  .hero-foot{grid-template-columns:1fr auto;align-items:end}
+  .pit-grid{grid-template-columns:1.25fr .75fr;gap:4rem;align-items:start}
+  .pit-fig{position:sticky;top:110px}
+  .night-grid{grid-template-columns:1fr 1fr;gap:4rem}
+  .night-img{margin-top:0;aspect-ratio:4/5}
+  .about-grid{grid-template-columns:.85fr 1.15fr;gap:4rem}
+  .tix-grid{grid-template-columns:.9fr 1.1fr;gap:4rem}
+  .know-grid{grid-template-columns:repeat(2,1fr);gap:2.5rem 3rem}
+  .ftr-grid{grid-template-columns:1fr auto;align-items:end}
+  .ftr-meta{text-align:right}
+}
+@media(min-width:1000px){
+  .hdr-nav{display:flex}
+  .burger{display:none}
+  .know-grid{grid-template-columns:repeat(4,1fr)}
+  .docket{padding:2rem 1.9rem 2.2rem}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
+  .rv{opacity:1;transform:none}
+  .rail-track{animation:none}
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a class="mark" href="#top"><b>DishPigs</b></a>
+    <nav class="hdr-nav" aria-label="Main">
+      <a href="#pit">The pit</a>
+      <a href="#night">The night</a>
+      <a href="#about">Who we are</a>
+      <a href="#tickets">Tickets</a>
+    </nav>
+    <button class="burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="sheet">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="sheet" id="sheet" aria-hidden="true">
+  <nav aria-label="Mobile">
+    <a href="#pit">The pit</a>
+    <a href="#night">The night</a>
+    <a href="#about">Who we are</a>
+    <a href="#tickets">Tickets</a>
+  </nav>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top">
+    <div class="hero-bg" role="img" aria-label="Kitchen at service"></div>
+    <div class="hero-veil"></div>
+
+    <div class="wrap">
+      <div class="hero-top">
+        <p class="tag">Albert's Wine Bar · Armadale</p>
+        <p class="tag tag--scald">Mon 28 Sept</p>
+      </div>
+
+      <h1 class="hero-title">
+        <span>Dish</span>
+        <span class="b">Pigs</span>
+      </h1>
+
+      <div class="hero-foot">
+        <p class="hero-hook">Five courses, a drink with every one, and no idea what's coming.</p>
+        <a class="btn" href="#tickets">Get tickets <span aria-hidden="true">↘</span></a>
+      </div>
+
+      <p class="scroll-cue" style="padding-bottom:1.6rem"><i></i> Scroll</p>
+    </div>
+  </section>
+
+  <!-- ============ TICKER ============ -->
+  <div class="rail" aria-hidden="true">
+    <div class="rail-track">
+      <span>Monday 28 September <em>—</em></span><span>Elevated Vietnamese <em>—</em></span><span>Five courses <em>—</em></span><span>Drinks with every course <em>—</em></span><span>$150 <em>—</em></span><span>Albert's Wine Bar, Armadale <em>—</em></span><span>Menu undisclosed <em>—</em></span><span>Tickets close 22 Sept <em>—</em></span>
+      <span>Monday 28 September <em>—</em></span><span>Elevated Vietnamese <em>—</em></span><span>Five courses <em>—</em></span><span>Drinks with every course <em>—</em></span><span>$150 <em>—</em></span><span>Albert's Wine Bar, Armadale <em>—</em></span><span>Menu undisclosed <em>—</em></span><span>Tickets close 22 Sept <em>—</em></span>
+    </div>
+  </div>
+
+  <!-- ============ THE PIT ============ -->
+  <section class="sec" id="pit">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="tag">Where the name comes from</p>
+        <p class="tag">Melbourne</p>
+      </div>
+
+      <div class="pit-grid">
+        <div class="pit-copy rv">
+          <p>There's a moment, somewhere between the last ticket and the first beer, when the kitchen finally exhales.</p>
+          <p>The burners go quiet. The chefs disappear into the night.</p>
+          <p><span class="hit">And the pit is still going.</span></p>
+          <p>Thirty covers turned into three hundred pieces of crockery and pans burnt black from ambition.</p>
+          <p>No headline. No post. No mention on the menu. But pull him out for one night and watch the whole thing fall over.</p>
+          <p><span class="hit">Service doesn't slow down. It dies.</span></p>
+          <p class="small">Kitchens aren't held together by the loudest voice or the sharpest knife. They're held together by the people willing to stand in the worst spot in the room, doing the job nobody else wants. That's who this is named after.</p>
+        </div>
+
+        <figure class="pit-fig rv" style="margin:0">
+          <div class="pit-img"></div>
+          <figcaption class="cap">The worst spot in the room</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BAND ============ -->
+  <section class="band">
+    <div class="band-bg" role="img" aria-label="Service"></div>
+    <div class="band-veil"></div>
+    <div class="rv">
+      <p class="tag" style="margin-bottom:1.5rem">Our roots</p>
+      <q>If you can't respect this part of the kitchen, you don't deserve to be in any other part of it.</q>
+    </div>
+  </section>
+
+  <!-- ============ THE NIGHT ============ -->
+  <section class="sec night" id="night">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="tag">The night</p>
+        <p class="tag tag--scald">Ticketed</p>
+      </div>
+
+      <div class="night-grid">
+        <div class="rv">
+          <!-- <<EDIT>> the docket: date, time, address -->
+          <div class="docket">
+            <div class="docket-hd"><span>Dishpigs</span><span>No. 01</span></div>
+            <dl>
+              <div class="row">
+                <dt>Date</dt>
+                <dd>Monday 28 September<small>Doors from 6:10pm</small></dd>
+              </div>
+              <div class="row">
+                <dt>Sittings</dt>
+                <dd>6:30pm or 7:30pm<small>Choose yours when you book</small></dd>
+              </div>
+              <div class="row">
+                <dt>Where</dt>
+                <dd>Albert's Wine Bar<small>17 Morey Street, Armadale VIC 3143</small></dd>
+              </div>
+              <div class="row">
+                <dt>Menu</dt>
+                <dd>Elevated Vietnamese<small>Five courses, undisclosed</small></dd>
+              </div>
+              <div class="row">
+                <dt>Drinks</dt>
+                <dd>Poured to every course<small>Included in the ticket</small></dd>
+              </div>
+              <div class="row">
+                <dt>Price</dt>
+                <dd>$150 per person<small>All inclusive</small></dd>
+              </div>
+            </dl>
+            <p class="docket-ft">18+ · Seats allocated by us · Ticket sales close Tue 22 Sept</p>
+          </div>
+
+          <div class="surprise" style="margin-top:3.5rem">
+            <p class="tag">The menu</p>
+            <h3>You'll find out <em class="serif-i">when you sit down.</em></h3>
+            <p>Five courses of elevated Vietnamese, plated the way we'd want to eat on our night off. We're not printing it early. Tell us your dietaries when you book and we'll work around them.</p>
+          </div>
+        </div>
+
+        <figure class="rv" style="margin:0">
+          <div class="night-img"></div>
+          <figcaption class="cap">Albert's, set for one night</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="sec" id="about">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="tag">Who we are</p>
+        <p class="tag">Four of us</p>
+      </div>
+
+      <div class="about-grid">
+        <figure class="rv" style="margin:0">
+          <div class="about-img"></div>
+          <figcaption class="cap">Two chefs, two front of house</figcaption>
+        </figure>
+
+        <div class="about-copy rv">
+          <p>We're four people who have spent the last several years working in hospitality — two of us as chefs, two front of house. We're all brought together by a passion for this industry.</p>
+          <p>Our goal with Dishpigs is to show our appreciation for the industry we've grown up on, and keep the core of what restaurants really are: people who are truly passionate about something, making something great.</p>
+          <p class="sign">Without losing our roots — Dishpigs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TICKETS ============ -->
+  <section class="sec tix" id="tickets">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="tag">Tickets</p>
+        <p class="tag tag--scald">Limited seats</p>
+      </div>
+
+      <div class="tix-grid">
+        <div class="rv">
+          <p class="tag">Per person, all in</p>
+          <p class="price"><sup>$</sup>150</p>
+
+          <ul class="incl">
+            <li><b>01</b> Five courses, elevated Vietnamese</li>
+            <li><b>02</b> A drink poured to every course</li>
+            <li><b>03</b> Your pick of the 6:30pm or 7:30pm sitting</li>
+            <li><b>04</b> Dietaries handled at booking</li>
+          </ul>
+
+          <p class="tix-note">Sales close Tuesday 22 September. Refunds available up to 7 days before the night. Booking with friends? Pick the same sitting — we allocate the seats.</p>
+        </div>
+
+        <div class="rv">
+          <div class="embed-shell">
+            <!-- ================= EVENTBRITE =================
+                 Live embed for event 1997564964582.
+                 If Jules ever runs a second night, change the eventId
+                 below and the "Book on Eventbrite" link underneath.
+                 ============================================== -->
+            <div id="eventbrite-widget"></div>
+
+            <noscript>
+              <div class="embed-fallback">
+                <div>
+                  <strong>Tickets are on Eventbrite.</strong>
+                  <p>Turn on JavaScript to book here, or head straight to the event page.</p>
+                  <a class="btn" href="https://www.eventbrite.com.au/e/1997564964582" target="_blank" rel="noopener">Book on Eventbrite <span aria-hidden="true">↗</span></a>
+                </div>
+              </div>
+            </noscript>
+          </div>
+          <p class="tix-note" style="text-align:center">Checkout not loading? <a href="https://www.eventbrite.com.au/e/1997564964582" target="_blank" rel="noopener" style="color:var(--scald)">Book on Eventbrite</a></p>
+        </div>
+      </div>
+
+      <!-- know before you go -->
+      <div class="know-grid" style="margin-top:5rem">
+        <div class="know rv">
+          <h3>Dietaries</h3>
+          <p>Let us know when you book. We can't guarantee changes made on the night.</p>
+        </div>
+        <div class="know rv">
+          <h3>Seating</h3>
+          <p>We allocate the seats. Booking with friends? Choose the same sitting and we'll put you together.</p>
+        </div>
+        <div class="know rv">
+          <h3>Arrival</h3>
+          <p>Doors from 6:10pm. Come on time — the first course goes out for the whole sitting at once.</p>
+        </div>
+        <div class="know rv">
+          <h3>Age &amp; dress</h3>
+          <p>18+, with drinks poured to every course. Wear whatever you'd wear to your local.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <p class="ftr-mark">Dishpigs</p>
+    <div class="ftr-grid">
+      <div>
+        <!-- <<EDIT>> socials + email -->
+        <div class="ftr-links">
+          <a href="https://instagram.com/dishpigs_" target="_blank" rel="noopener">@dishpigs_</a>
+          <a href="mailto:admin@thedishpigs.com.au">admin@thedishpigs.com.au</a>
+          <a href="#tickets">Tickets</a>
+        </div>
+      </div>
+      <div class="ftr-meta">
+        <div>Monday 28 September</div>
+        <div>&copy; <span id="yr"></span> Dishpigs</div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.eventbrite.com/static/widgets/eb_widgets.js"></script>
+<script>
+  window.addEventListener('load', function(){
+    if(window.EBWidgets){
+      window.EBWidgets.createWidget({
+        widgetType:'checkout',
+        eventId:'1997564964582',
+        iframeContainerId:'eventbrite-widget',
+        iframeContainerHeight:680
+      });
+    }
+  });
+</script>
+
+<script>
+(function(){
+  var hdr=document.getElementById('hdr'),
+      burger=document.getElementById('burger'),
+      sheet=document.getElementById('sheet'),
+      reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.getElementById('yr').textContent=new Date().getFullYear();
+
+  function setSheet(open){
+    burger.setAttribute('aria-expanded',String(open));
+    burger.setAttribute('aria-label',open?'Close menu':'Open menu');
+    sheet.classList.toggle('open',open);
+    sheet.setAttribute('aria-hidden',String(!open));
+    document.body.classList.toggle('nav-open',open);
+  }
+  burger.addEventListener('click',function(){setSheet(burger.getAttribute('aria-expanded')!=='true');});
+  sheet.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setSheet(false);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setSheet(false);});
+
+  function onScroll(){hdr.classList.toggle('stuck',scrollY>24);}
+  onScroll();addEventListener('scroll',onScroll,{passive:true});
+
+  var items=document.querySelectorAll('.rv');
+  if(reduced||!('IntersectionObserver' in window)){
+    items.forEach(function(el){el.classList.add('in');});
+  }else{
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}
+      });
+    },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    items.forEach(function(el){io.observe(el);});
+  }
+})();
+</script>
+</body>
+</html>
